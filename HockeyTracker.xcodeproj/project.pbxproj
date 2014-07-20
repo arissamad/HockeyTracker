@@ -15,6 +15,8 @@
 		0B02F951197BA1E900230B46 /* BPoint.java in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F950197BA1E900230B46 /* BPoint.java */; };
 		0B02F953197BA1EF00230B46 /* JAProcessor.java in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F952197BA1EF00230B46 /* JAProcessor.java */; };
 		0B02F955197BA1F600230B46 /* Polygon.java in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F954197BA1F600230B46 /* Polygon.java */; };
+		0B02F958197BB34C00230B46 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B02F957197BB34C00230B46 /* AudioToolbox.framework */; };
+		0B02F95B197BB36400230B46 /* TonePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F95A197BB36400230B46 /* TonePlayer.m */; };
 		0B27041E197B9E9100237CBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27041D197B9E9100237CBC /* Foundation.framework */; };
 		0B270420197B9E9100237CBC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27041F197B9E9100237CBC /* CoreGraphics.framework */; };
 		0B270422197B9E9100237CBC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270421197B9E9100237CBC /* UIKit.framework */; };
@@ -72,6 +74,9 @@
 		0B02F950197BA1E900230B46 /* BPoint.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = BPoint.java; sourceTree = "<group>"; };
 		0B02F952197BA1EF00230B46 /* JAProcessor.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = JAProcessor.java; sourceTree = "<group>"; };
 		0B02F954197BA1F600230B46 /* Polygon.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Polygon.java; sourceTree = "<group>"; };
+		0B02F957197BB34C00230B46 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		0B02F959197BB36400230B46 /* TonePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TonePlayer.h; sourceTree = "<group>"; };
+		0B02F95A197BB36400230B46 /* TonePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TonePlayer.m; sourceTree = "<group>"; };
 		0B27041A197B9E9100237CBC /* HockeyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HockeyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B27041D197B9E9100237CBC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0B27041F197B9E9100237CBC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B02F958197BB34C00230B46 /* AudioToolbox.framework in Frameworks */,
 				0B27045B197B9EE200237CBC /* QuartzCore.framework in Frameworks */,
 				0B270459197B9EDC00237CBC /* ImageIO.framework in Frameworks */,
 				0B270457197B9ED300237CBC /* CoreImage.framework in Frameworks */,
@@ -136,6 +142,8 @@
 				0B02F946197BA05F00230B46 /* SColor.m */,
 				0B02F948197BA07B00230B46 /* CapturedImage.h */,
 				0B02F949197BA07B00230B46 /* CapturedImage.m */,
+				0B02F959197BB36400230B46 /* TonePlayer.h */,
+				0B02F95A197BB36400230B46 /* TonePlayer.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -174,6 +182,7 @@
 		0B27041C197B9E9100237CBC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B02F957197BB34C00230B46 /* AudioToolbox.framework */,
 				0B27045A197B9EE200237CBC /* QuartzCore.framework */,
 				0B270458197B9EDC00237CBC /* ImageIO.framework */,
 				0B270456197B9ED300237CBC /* CoreImage.framework */,
@@ -336,6 +345,7 @@
 				0B270434197B9E9100237CBC /* ViewController.m in Sources */,
 				0B02F94A197BA07B00230B46 /* CapturedImage.m in Sources */,
 				0B27042E197B9E9100237CBC /* AppDelegate.m in Sources */,
+				0B02F95B197BB36400230B46 /* TonePlayer.m in Sources */,
 				0B02F944197BA03600230B46 /* ColorPatch.m in Sources */,
 				0B02F951197BA1E900230B46 /* BPoint.java in Sources */,
 				0B27042A197B9E9100237CBC /* main.m in Sources */,

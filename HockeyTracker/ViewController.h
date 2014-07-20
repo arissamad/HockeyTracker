@@ -14,6 +14,7 @@
 #import "ColorPatch.h"
 #import "CapturedImage.h"
 #import "SColor.h"
+#import "TonePlayer.h"
 
 @interface ViewController : UIViewController
 

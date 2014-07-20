@@ -30,6 +30,8 @@
     
     SColor *touchColor;
     
+    TonePlayer *tonePlayer;
+    
     BOOL loop;
 }
 
@@ -38,6 +40,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    tonePlayer = [TonePlayer new];
+    [tonePlayer setup];
     
     rgbColorSpace = CGColorSpaceCreateDeviceRGB();
     
@@ -126,6 +130,7 @@
 - (IBAction)clickedStop {
     NSLog(@"Clicked stop");
     loop = NO;
+    [tonePlayer stop];
 }
 
 - (IBAction)clickedCapture {
@@ -203,6 +208,11 @@
         [self clickedCapture];
         
         NSInteger playerLocation = [capturedImage getPlayerLocation];
+        
+        NSInteger frequency = (playerLocation * 4000 / 100) + 500;
+        NSLog(@"Frequency is %d", frequency);
+        
+        [tonePlayer play:frequency];
     }
 }
 @end
