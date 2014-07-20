@@ -10,6 +10,8 @@
 #import "JAProcessor.h"
 
 @implementation CapturedImage {
+    JAProcessor *jaProcessor;
+    
     unsigned char *originalRawData;
     
     NSInteger width;
@@ -45,6 +47,8 @@
     hsbImageView = incomingHsbImageView;
     
     isFirstTime = true;
+    
+    jaProcessor = [JAProcessor new];
 }
 
 -(void) setImage:(CGImageRef) incomingCgImageRef {
@@ -91,8 +95,6 @@
     CGFloat green = originalRawData[byteIndex + 1];
     CGFloat blue  = originalRawData[byteIndex + 2];
     
-    NSLog(@"Color is %f %f %f", red, green, blue);
-    
     SColor *color = [SColor new];
     [color setRed:red green:green blue:blue];
     
@@ -104,7 +106,6 @@
     
     IOSByteArray *byteArray = [IOSByteArray arrayWithBytes:(char *)originalRawData count:arrayLength];
     
-    JAProcessor *jaProcessor = [JAProcessor new];
     [jaProcessor processRawDataWithByteArray:byteArray withInt:width withInt:height
                                     withByte:theColor.getRed withByte:theColor.getGreen withByte:theColor.getBlue];
     
@@ -125,8 +126,6 @@
         }
     }
     
-    NSLog(@"Binary count (0, 1): (%d, %d)", count0, count1);
-    
     CGContextRef binaryCgContextRef = CGBitmapContextCreate(binaryRawData, width, height, bitsPerComponent, width, grayColorSpace, nil);
     CGImageRef binaryCgImage = CGBitmapContextCreateImage(binaryCgContextRef);
     
@@ -134,6 +133,10 @@
     hsbImageView.image = hsbImage;
     
     CGContextRelease(binaryCgContextRef);
+}
+
+-(NSInteger) getPlayerLocation {
+    return [jaProcessor getPlayerLocation];
 }
 
 @end

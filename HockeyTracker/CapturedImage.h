@@ -18,5 +18,6 @@
 
 -(NSInteger) getWidth;
 -(NSInteger) getHeight;
+-(NSInteger) getPlayerLocation;
 
 @end

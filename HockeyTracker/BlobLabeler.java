@@ -35,10 +35,24 @@ public class BlobLabeler {
 		arrayLength = width * height;
 		labelImage = new byte[arrayLength];
 		
+        // Prevent edge errors by filling 1-pixel background border all around
+        
 		// First, make the first row completely background. This way I don't have to add offset.
 		for(int x=0; x<width; x++) {
 			binaryData[x] = backgroundColor;
 		}
+        
+        // Also make the last row completely background. Makes the algorithm more robust.
+        int beginIndex = (this.height-1) * width;
+        for(int x=0; x<width; x++) {
+            binaryData[beginIndex + x] = backgroundColor;
+        }
+        
+        // Sides
+        for(int y=0; y<height; y++) {
+            binaryData[index(0,y)] = backgroundColor;
+            binaryData[index(width-1, y)] = backgroundColor;
+        }
 		
 		for(int y=0; y<height-1; y++) {
 			for(int x=0; x<width; x++) {
@@ -142,6 +156,15 @@ public class BlobLabeler {
 			labelImage[index(nextPoint.x, nextPoint.y)] = label;
 			equalsStartpoint = nextPoint.equals(startPoint);
 			nextPoint = nextPointOnContour(nextPoint, -1);
+            
+            if(nextPoint.getY() > height) {
+                System.out.println("Next point has exceeded height: " + nextPoint.getY());
+                return contour;
+            }
+            if(nextPoint.getX() > width) {
+                System.out.println("Next point has exceeded width: " + nextPoint.getX());
+                return contour;
+            }
 		} while (!equalsStartpoint || !nextPoint.equals(T));
 
 		return contour;

@@ -3,14 +3,18 @@
  * Java Analyzer (JA)
  */
 public class JAProcessor {
-	
-	public static void main(String[] args) {
-		JAProcessor jaProcessor = new JAProcessor();
-		System.out.println("Done");
-	}
-	
+    
+	private float hue, saturation, brightness;
+	private float hueMin, hueMax;
+	private float saturationMin, saturationMax;
+	private float brightnessMin, brightnessMax;
+    
+    protected int playerLocation; // From 0 (all the way left) to 100 (all the way right).
+    
+	protected byte[] binaryData;
+    
 	public JAProcessor() {
-		System.out.println("JA v1");
+		System.out.println("JAProcessor initialized.");
 		
 		hueMin = 0.6f;
 		hueMax = 0.7f;
@@ -20,13 +24,6 @@ public class JAProcessor {
 		brightnessMax = 1;
 	}
 
-	private float hue, saturation, brightness;
-	private float hueMin, hueMax;
-	private float saturationMin, saturationMax;
-	private float brightnessMin, brightnessMax;
-
-	protected byte[] binaryData;
-	
 	public void processRawData(byte[] rawData, int width, int height, byte colorRed, byte colorGreen, byte colorBlue) {
         
 		setBand(colorRed, colorGreen, colorBlue);
@@ -59,12 +56,15 @@ public class JAProcessor {
 			}
 		}
 		
-		System.out.println("In band pixels: " + inBandCount);
-		System.out.println("Out band pixels: " + outBandCount);
-		
+		System.out.println("In-band/Out-band pixels: " + inBandCount + "/" + outBandCount);
+		System.out.println("Now detecting blobs...");
+        
 		// Now, label the binary image
 		BlobLabeler blobLabeler = new BlobLabeler();
 		blobLabeler.processImage(binaryData, width, height);
+        
+        System.out.println("Finished detecting blobs.");
+        
 		blobLabeler.filterBlobs();
 		blobLabeler.printDebuggingInfo();
 		
@@ -77,8 +77,13 @@ public class JAProcessor {
 		
 		BPoint cg = blob.getCenterOfGravity();
 		float xLocation = 100.0f * (float)cg.getX()/(float)width;
-		System.out.println("Player x percentage: " + xLocation);
+        playerLocation = (int) xLocation;
+		System.out.println("Player x percentage: " + playerLocation);
 	}
+    
+    public int getPlayerLocation() {
+        return playerLocation;
+    }
 	
 	public byte[] getBinaryData() {
 		return binaryData;

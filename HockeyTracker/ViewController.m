@@ -120,7 +120,7 @@
     NSLog(@"Clicked start");
     loop = YES;
     
-    [self checkTime];
+    [self runLoop];
 }
 
 - (IBAction)clickedStop {
@@ -134,30 +134,25 @@
     AVCaptureConnection *videoConnection = nil;
     for (AVCaptureConnection *connection in stillImageOutput.connections) {
         
-        if ([connection isVideoOrientationSupported]) {
-            NSLog(@"Orientation: %d", connection.videoOrientation);
-            NSLog(@"Want it to be: %d", AVCaptureVideoOrientationLandscapeRight);
-            connection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
-        }
+        
         
         for (AVCaptureInputPort *port in [connection inputPorts]) {
             if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
                 videoConnection = connection;
+                
+                // Set correct orientation for still image.
+                if ([videoConnection isVideoOrientationSupported]) {
+                    videoConnection.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+                }
+                
                 break;
             }
         }
         if (videoConnection) { break; }
     }
     
-    [stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
-        CFDictionaryRef exifAttachments = CMGetAttachment(imageDataSampleBuffer, kCGImagePropertyExifDictionary, NULL);
-        if (exifAttachments)
-        {
-            // Do something with the attachments.
-            //NSLog(@"attachements: %@", exifAttachments);
-        } else {
-            NSLog(@"no attachments");
-        }
+    [stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error)
+    {
         
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
         UIImage *image = [[UIImage alloc] initWithData:imageData];
@@ -165,11 +160,7 @@
         NSUInteger iWidth = image.size.width;
         NSUInteger iHeight = image.size.height;
         
-        NSLog(@"UIImage: %lu, %lu", (unsigned long) iWidth, (unsigned long) iHeight);
-        
         self.snapshotView.image = image;
-        
-        //CIImage *ciImage = [CIImage imageWithCGImage:image.CGImage];
         
         CGImageRef cgImageRef = [image CGImage];
         
@@ -185,15 +176,12 @@
 - (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
 {
     CGPoint touchPoint=[gesture locationInView:self.snapshotView];
-    NSLog(@"Touchpoint: (%f, %f)", touchPoint.x, touchPoint.y);
     
     NSInteger rawWidth = [capturedImage getWidth];
     NSInteger rawHeight = [capturedImage getHeight];
     
     NSInteger rawX = rawWidth * (touchPoint.x/self.snapshotView.frame.size.width);
     NSInteger rawY = rawHeight * (touchPoint.y/self.snapshotView.frame.size.height);
-    
-    NSLog(@"Raw width: %d, rawX: %d", rawWidth, rawX);
     
     touchColor = [capturedImage getPixel:rawX y:rawY];
     
@@ -207,12 +195,14 @@
     [capturedImage processImage:touchColor];
 }
 
-- (void) checkTime {
-    NSLog(@"Check time");
+- (void) runLoop {
+    NSLog(@"Loop");
     
     if(loop == YES) {
-        [self performSelector:@selector(checkTime) withObject:self afterDelay:1.0];
+        [self performSelector:@selector(runLoop) withObject:self afterDelay:1.0];
         [self clickedCapture];
+        
+        NSInteger playerLocation = [capturedImage getPlayerLocation];
     }
 }
 @end
