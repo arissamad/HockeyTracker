@@ -1,0 +1,491 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B27041E197B9E9100237CBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27041D197B9E9100237CBC /* Foundation.framework */; };
+		0B270420197B9E9100237CBC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27041F197B9E9100237CBC /* CoreGraphics.framework */; };
+		0B270422197B9E9100237CBC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270421197B9E9100237CBC /* UIKit.framework */; };
+		0B270428197B9E9100237CBC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B270426197B9E9100237CBC /* InfoPlist.strings */; };
+		0B27042A197B9E9100237CBC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B270429197B9E9100237CBC /* main.m */; };
+		0B27042E197B9E9100237CBC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B27042D197B9E9100237CBC /* AppDelegate.m */; };
+		0B270431197B9E9100237CBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B27042F197B9E9100237CBC /* Main.storyboard */; };
+		0B270434197B9E9100237CBC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B270433197B9E9100237CBC /* ViewController.m */; };
+		0B270436197B9E9100237CBC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B270435197B9E9100237CBC /* Images.xcassets */; };
+		0B27043D197B9E9100237CBC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27043C197B9E9100237CBC /* XCTest.framework */; };
+		0B27043E197B9E9100237CBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27041D197B9E9100237CBC /* Foundation.framework */; };
+		0B27043F197B9E9100237CBC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270421197B9E9100237CBC /* UIKit.framework */; };
+		0B270447197B9E9100237CBC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B270445197B9E9100237CBC /* InfoPlist.strings */; };
+		0B270449197B9E9100237CBC /* HockeyTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B270448197B9E9100237CBC /* HockeyTrackerTests.m */; };
+		0B270453197B9EB400237CBC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270452197B9EB400237CBC /* AVFoundation.framework */; };
+		0B270455197B9EC300237CBC /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270454197B9EC300237CBC /* CoreVideo.framework */; };
+		0B270457197B9ED300237CBC /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270456197B9ED300237CBC /* CoreImage.framework */; };
+		0B270459197B9EDC00237CBC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270458197B9EDC00237CBC /* ImageIO.framework */; };
+		0B27045B197B9EE200237CBC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27045A197B9EE200237CBC /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0B270440197B9E9100237CBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B270412197B9E9100237CBC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B270419197B9E9100237CBC;
+			remoteInfo = HockeyTracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0B27041A197B9E9100237CBC /* HockeyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HockeyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B27041D197B9E9100237CBC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0B27041F197B9E9100237CBC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0B270421197B9E9100237CBC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0B270425197B9E9100237CBC /* HockeyTracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HockeyTracker-Info.plist"; sourceTree = "<group>"; };
+		0B270427197B9E9100237CBC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0B270429197B9E9100237CBC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0B27042B197B9E9100237CBC /* HockeyTracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HockeyTracker-Prefix.pch"; sourceTree = "<group>"; };
+		0B27042C197B9E9100237CBC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0B27042D197B9E9100237CBC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0B270430197B9E9100237CBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0B270432197B9E9100237CBC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0B270433197B9E9100237CBC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0B270435197B9E9100237CBC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0B27043B197B9E9100237CBC /* HockeyTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HockeyTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B27043C197B9E9100237CBC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		0B270444197B9E9100237CBC /* HockeyTrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HockeyTrackerTests-Info.plist"; sourceTree = "<group>"; };
+		0B270446197B9E9100237CBC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0B270448197B9E9100237CBC /* HockeyTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HockeyTrackerTests.m; sourceTree = "<group>"; };
+		0B270452197B9EB400237CBC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0B270454197B9EC300237CBC /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		0B270456197B9ED300237CBC /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		0B270458197B9EDC00237CBC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		0B27045A197B9EE200237CBC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0B270417197B9E9100237CBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B27045B197B9EE200237CBC /* QuartzCore.framework in Frameworks */,
+				0B270459197B9EDC00237CBC /* ImageIO.framework in Frameworks */,
+				0B270457197B9ED300237CBC /* CoreImage.framework in Frameworks */,
+				0B270420197B9E9100237CBC /* CoreGraphics.framework in Frameworks */,
+				0B270455197B9EC300237CBC /* CoreVideo.framework in Frameworks */,
+				0B270422197B9E9100237CBC /* UIKit.framework in Frameworks */,
+				0B270453197B9EB400237CBC /* AVFoundation.framework in Frameworks */,
+				0B27041E197B9E9100237CBC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B270438197B9E9100237CBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B27043D197B9E9100237CBC /* XCTest.framework in Frameworks */,
+				0B27043F197B9E9100237CBC /* UIKit.framework in Frameworks */,
+				0B27043E197B9E9100237CBC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B270411197B9E9100237CBC = {
+			isa = PBXGroup;
+			children = (
+				0B270423197B9E9100237CBC /* HockeyTracker */,
+				0B270442197B9E9100237CBC /* HockeyTrackerTests */,
+				0B27041C197B9E9100237CBC /* Frameworks */,
+				0B27041B197B9E9100237CBC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0B27041B197B9E9100237CBC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0B27041A197B9E9100237CBC /* HockeyTracker.app */,
+				0B27043B197B9E9100237CBC /* HockeyTrackerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0B27041C197B9E9100237CBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0B27045A197B9EE200237CBC /* QuartzCore.framework */,
+				0B270458197B9EDC00237CBC /* ImageIO.framework */,
+				0B270456197B9ED300237CBC /* CoreImage.framework */,
+				0B270454197B9EC300237CBC /* CoreVideo.framework */,
+				0B270452197B9EB400237CBC /* AVFoundation.framework */,
+				0B27041D197B9E9100237CBC /* Foundation.framework */,
+				0B27041F197B9E9100237CBC /* CoreGraphics.framework */,
+				0B270421197B9E9100237CBC /* UIKit.framework */,
+				0B27043C197B9E9100237CBC /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0B270423197B9E9100237CBC /* HockeyTracker */ = {
+			isa = PBXGroup;
+			children = (
+				0B27042C197B9E9100237CBC /* AppDelegate.h */,
+				0B27042D197B9E9100237CBC /* AppDelegate.m */,
+				0B27042F197B9E9100237CBC /* Main.storyboard */,
+				0B270432197B9E9100237CBC /* ViewController.h */,
+				0B270433197B9E9100237CBC /* ViewController.m */,
+				0B270435197B9E9100237CBC /* Images.xcassets */,
+				0B270424197B9E9100237CBC /* Supporting Files */,
+			);
+			path = HockeyTracker;
+			sourceTree = "<group>";
+		};
+		0B270424197B9E9100237CBC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0B270425197B9E9100237CBC /* HockeyTracker-Info.plist */,
+				0B270426197B9E9100237CBC /* InfoPlist.strings */,
+				0B270429197B9E9100237CBC /* main.m */,
+				0B27042B197B9E9100237CBC /* HockeyTracker-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0B270442197B9E9100237CBC /* HockeyTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				0B270448197B9E9100237CBC /* HockeyTrackerTests.m */,
+				0B270443197B9E9100237CBC /* Supporting Files */,
+			);
+			path = HockeyTrackerTests;
+			sourceTree = "<group>";
+		};
+		0B270443197B9E9100237CBC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0B270444197B9E9100237CBC /* HockeyTrackerTests-Info.plist */,
+				0B270445197B9E9100237CBC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0B270419197B9E9100237CBC /* HockeyTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B27044C197B9E9100237CBC /* Build configuration list for PBXNativeTarget "HockeyTracker" */;
+			buildPhases = (
+				0B270416197B9E9100237CBC /* Sources */,
+				0B270417197B9E9100237CBC /* Frameworks */,
+				0B270418197B9E9100237CBC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HockeyTracker;
+			productName = HockeyTracker;
+			productReference = 0B27041A197B9E9100237CBC /* HockeyTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0B27043A197B9E9100237CBC /* HockeyTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B27044F197B9E9100237CBC /* Build configuration list for PBXNativeTarget "HockeyTrackerTests" */;
+			buildPhases = (
+				0B270437197B9E9100237CBC /* Sources */,
+				0B270438197B9E9100237CBC /* Frameworks */,
+				0B270439197B9E9100237CBC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0B270441197B9E9100237CBC /* PBXTargetDependency */,
+			);
+			name = HockeyTrackerTests;
+			productName = HockeyTrackerTests;
+			productReference = 0B27043B197B9E9100237CBC /* HockeyTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0B270412197B9E9100237CBC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Sir Apps-a-Lot";
+				TargetAttributes = {
+					0B27043A197B9E9100237CBC = {
+						TestTargetID = 0B270419197B9E9100237CBC;
+					};
+				};
+			};
+			buildConfigurationList = 0B270415197B9E9100237CBC /* Build configuration list for PBXProject "HockeyTracker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0B270411197B9E9100237CBC;
+			productRefGroup = 0B27041B197B9E9100237CBC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0B270419197B9E9100237CBC /* HockeyTracker */,
+				0B27043A197B9E9100237CBC /* HockeyTrackerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0B270418197B9E9100237CBC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B270436197B9E9100237CBC /* Images.xcassets in Resources */,
+				0B270428197B9E9100237CBC /* InfoPlist.strings in Resources */,
+				0B270431197B9E9100237CBC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B270439197B9E9100237CBC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B270447197B9E9100237CBC /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0B270416197B9E9100237CBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B270434197B9E9100237CBC /* ViewController.m in Sources */,
+				0B27042E197B9E9100237CBC /* AppDelegate.m in Sources */,
+				0B27042A197B9E9100237CBC /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0B270437197B9E9100237CBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B270449197B9E9100237CBC /* HockeyTrackerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0B270441197B9E9100237CBC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0B270419197B9E9100237CBC /* HockeyTracker */;
+			targetProxy = 0B270440197B9E9100237CBC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0B270426197B9E9100237CBC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B270427197B9E9100237CBC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0B27042F197B9E9100237CBC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B270430197B9E9100237CBC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0B270445197B9E9100237CBC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B270446197B9E9100237CBC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0B27044A197B9E9100237CBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0B27044B197B9E9100237CBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0B27044D197B9E9100237CBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HockeyTracker/HockeyTracker-Prefix.pch";
+				INFOPLIST_FILE = "HockeyTracker/HockeyTracker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0B27044E197B9E9100237CBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HockeyTracker/HockeyTracker-Prefix.pch";
+				INFOPLIST_FILE = "HockeyTracker/HockeyTracker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		0B270450197B9E9100237CBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HockeyTracker.app/HockeyTracker";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HockeyTracker/HockeyTracker-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "HockeyTrackerTests/HockeyTrackerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		0B270451197B9E9100237CBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HockeyTracker.app/HockeyTracker";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HockeyTracker/HockeyTracker-Prefix.pch";
+				INFOPLIST_FILE = "HockeyTrackerTests/HockeyTrackerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0B270415197B9E9100237CBC /* Build configuration list for PBXProject "HockeyTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B27044A197B9E9100237CBC /* Debug */,
+				0B27044B197B9E9100237CBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0B27044C197B9E9100237CBC /* Build configuration list for PBXNativeTarget "HockeyTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B27044D197B9E9100237CBC /* Debug */,
+				0B27044E197B9E9100237CBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0B27044F197B9E9100237CBC /* Build configuration list for PBXNativeTarget "HockeyTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B270450197B9E9100237CBC /* Debug */,
+				0B270451197B9E9100237CBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0B270412197B9E9100237CBC /* Project object */;
+}
