@@ -46,7 +46,7 @@
 				"$(DERIVED_FILE_DIR)/${INPUT_FILE_BASE}.h",
 				"$(DERIVED_FILE_DIR)/${INPUT_FILE_BASE}.m",
 			);
-			script = "/Users/aris/Hockey/j2objc/dist/j2objc -d ${DERIVED_FILES_DIR} -sourcepath ${PROJECT_DIR}/ --no-package-directories -use-arc ${INPUT_FILE_PATH};";
+			script = "/Users/aris/Hockey/j2objc/dist/j2objc -d ${DERIVED_FILES_DIR} -sourcepath /Users/aris/Hockey/HockeyTracker/HockeyTracker --no-package-directories -use-arc ${INPUT_FILE_PATH};";
 		};
 /* End PBXBuildRule section */
 
