@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B02F944197BA03600230B46 /* ColorPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F943197BA03600230B46 /* ColorPatch.m */; };
+		0B02F947197BA05F00230B46 /* SColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F946197BA05F00230B46 /* SColor.m */; };
+		0B02F94A197BA07B00230B46 /* CapturedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F949197BA07B00230B46 /* CapturedImage.m */; };
+		0B02F94D197BA1BA00230B46 /* Blob.java in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F94C197BA1BA00230B46 /* Blob.java */; };
+		0B02F94F197BA1E400230B46 /* BlobLabeler.java in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F94E197BA1E400230B46 /* BlobLabeler.java */; };
+		0B02F951197BA1E900230B46 /* BPoint.java in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F950197BA1E900230B46 /* BPoint.java */; };
+		0B02F953197BA1EF00230B46 /* JAProcessor.java in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F952197BA1EF00230B46 /* JAProcessor.java */; };
+		0B02F955197BA1F600230B46 /* Polygon.java in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F954197BA1F600230B46 /* Polygon.java */; };
 		0B27041E197B9E9100237CBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27041D197B9E9100237CBC /* Foundation.framework */; };
 		0B270420197B9E9100237CBC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27041F197B9E9100237CBC /* CoreGraphics.framework */; };
 		0B270422197B9E9100237CBC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270421197B9E9100237CBC /* UIKit.framework */; };
@@ -28,6 +36,20 @@
 		0B27045B197B9EE200237CBC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27045A197B9EE200237CBC /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		0B02F956197BA22B00230B46 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = sourcecode.java;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/${INPUT_FILE_BASE}.h",
+				"$(DERIVED_FILE_DIR)/${INPUT_FILE_BASE}.m",
+			);
+			script = "/Users/aris/Hockey/j2objc/dist/j2objc -d ${DERIVED_FILES_DIR} -sourcepath ${PROJECT_DIR}/ --no-package-directories -use-arc ${INPUT_FILE_PATH};";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		0B270440197B9E9100237CBC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,6 +61,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B02F942197BA03600230B46 /* ColorPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPatch.h; sourceTree = "<group>"; };
+		0B02F943197BA03600230B46 /* ColorPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPatch.m; sourceTree = "<group>"; };
+		0B02F945197BA05F00230B46 /* SColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SColor.h; sourceTree = "<group>"; };
+		0B02F946197BA05F00230B46 /* SColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SColor.m; sourceTree = "<group>"; };
+		0B02F948197BA07B00230B46 /* CapturedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapturedImage.h; sourceTree = "<group>"; };
+		0B02F949197BA07B00230B46 /* CapturedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapturedImage.m; sourceTree = "<group>"; };
+		0B02F94C197BA1BA00230B46 /* Blob.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Blob.java; sourceTree = "<group>"; };
+		0B02F94E197BA1E400230B46 /* BlobLabeler.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = BlobLabeler.java; sourceTree = "<group>"; };
+		0B02F950197BA1E900230B46 /* BPoint.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = BPoint.java; sourceTree = "<group>"; };
+		0B02F952197BA1EF00230B46 /* JAProcessor.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = JAProcessor.java; sourceTree = "<group>"; };
+		0B02F954197BA1F600230B46 /* Polygon.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Polygon.java; sourceTree = "<group>"; };
 		0B27041A197B9E9100237CBC /* HockeyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HockeyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B27041D197B9E9100237CBC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0B27041F197B9E9100237CBC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -94,6 +127,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B02F941197BA01300230B46 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				0B02F942197BA03600230B46 /* ColorPatch.h */,
+				0B02F943197BA03600230B46 /* ColorPatch.m */,
+				0B02F945197BA05F00230B46 /* SColor.h */,
+				0B02F946197BA05F00230B46 /* SColor.m */,
+				0B02F948197BA07B00230B46 /* CapturedImage.h */,
+				0B02F949197BA07B00230B46 /* CapturedImage.m */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		0B02F94B197BA1A200230B46 /* java */ = {
+			isa = PBXGroup;
+			children = (
+				0B02F954197BA1F600230B46 /* Polygon.java */,
+				0B02F952197BA1EF00230B46 /* JAProcessor.java */,
+				0B02F950197BA1E900230B46 /* BPoint.java */,
+				0B02F94E197BA1E400230B46 /* BlobLabeler.java */,
+				0B02F94C197BA1BA00230B46 /* Blob.java */,
+			);
+			name = java;
+			sourceTree = "<group>";
+		};
 		0B270411197B9E9100237CBC = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +190,8 @@
 		0B270423197B9E9100237CBC /* HockeyTracker */ = {
 			isa = PBXGroup;
 			children = (
+				0B02F94B197BA1A200230B46 /* java */,
+				0B02F941197BA01300230B46 /* Support */,
 				0B27042C197B9E9100237CBC /* AppDelegate.h */,
 				0B27042D197B9E9100237CBC /* AppDelegate.m */,
 				0B27042F197B9E9100237CBC /* Main.storyboard */,
@@ -184,6 +244,7 @@
 				0B270418197B9E9100237CBC /* Resources */,
 			);
 			buildRules = (
+				0B02F956197BA22B00230B46 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -269,9 +330,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B02F94D197BA1BA00230B46 /* Blob.java in Sources */,
+				0B02F953197BA1EF00230B46 /* JAProcessor.java in Sources */,
+				0B02F955197BA1F600230B46 /* Polygon.java in Sources */,
 				0B270434197B9E9100237CBC /* ViewController.m in Sources */,
+				0B02F94A197BA07B00230B46 /* CapturedImage.m in Sources */,
 				0B27042E197B9E9100237CBC /* AppDelegate.m in Sources */,
+				0B02F944197BA03600230B46 /* ColorPatch.m in Sources */,
+				0B02F951197BA1E900230B46 /* BPoint.java in Sources */,
 				0B27042A197B9E9100237CBC /* main.m in Sources */,
+				0B02F94F197BA1E400230B46 /* BlobLabeler.java in Sources */,
+				0B02F947197BA05F00230B46 /* SColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +467,15 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HockeyTracker/HockeyTracker-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/aris/Hockey/j2objc/dist/include,
+					"${DERIVED_FILES_DIR}",
+				);
 				INFOPLIST_FILE = "HockeyTracker/HockeyTracker-Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/aris/Hockey/j2objc/dist/lib;
+				OTHER_LDFLAGS = "-ljre_emul";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -411,7 +488,15 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HockeyTracker/HockeyTracker-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/aris/Hockey/j2objc/dist/include,
+					"${DERIVED_FILES_DIR}",
+				);
 				INFOPLIST_FILE = "HockeyTracker/HockeyTracker-Info.plist";
+				LIBRARY_SEARCH_PATHS = /Users/aris/Hockey/j2objc/dist/lib;
+				OTHER_LDFLAGS = "-ljre_emul";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -476,6 +561,7 @@
 				0B27044E197B9E9100237CBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0B27044F197B9E9100237CBC /* Build configuration list for PBXNativeTarget "HockeyTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +570,7 @@
 				0B270451197B9E9100237CBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
