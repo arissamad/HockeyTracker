@@ -19,10 +19,16 @@ OSStatus RenderTone(
 {
 	// Fixed amplitude is good enough for our purposes
     // At max headset volume, 1 = 1V. So it goes from -1V to 1V.
-	const double amplitude = 0.5;
+	const double amplitude = 0.1;
     
 	// Get the tone parameters out of the TonePlayer
 	TonePlayer *tonePlayer = (__bridge TonePlayer *)inRefCon;
+    
+    if(tonePlayer.frequency != tonePlayer.previousFrequency) {
+        //NSLog(@"--- Frequency change from %f to %f", tonePlayer.previousFrequency, tonePlayer.frequency);
+        tonePlayer.previousFrequency = tonePlayer.frequency;
+    }
+
 	double theta = tonePlayer.theta;
 	double theta_increment = 2.0 * M_PI * tonePlayer.frequency / tonePlayer.sampleRate;
     

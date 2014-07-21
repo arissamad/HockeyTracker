@@ -40,14 +40,14 @@
 
 
 
-- (void) setColor:(CGFloat) red green:(CGFloat) green blue:(CGFloat) blue {
+- (void) setColor:(SColor *) color {
     
     int index = 0;
     for(int y=0; y<height; y++) {
         for(int x=0; x<width; x++) {
-            rawData[index] = red;
-            rawData[index+1] = green;
-            rawData[index+2] = blue;
+            rawData[index] = color.getRed;
+            rawData[index+1] = color.getGreen;
+            rawData[index+2] = color.getBlue;
             rawData[index+3] = 255;
             index += 4;
         }

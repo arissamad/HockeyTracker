@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SColor.h"
 
 @interface ColorPatch : NSObject {
     UIImageView *sampleColorImageView;
@@ -15,6 +16,6 @@
 @property (nonatomic, retain) UIImageView *sampleColorImageView;
 
 -(void) setView:(UIImageView*) incomingImageView;
--(void) setColor:(CGFloat) red green:(CGFloat) green blue:(CGFloat) blue;
+-(void) setColor:(SColor *) color;
 
 @end

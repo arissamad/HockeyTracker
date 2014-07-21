@@ -35,9 +35,14 @@
     UIImageView *hsbImageView;
     
     BOOL isFirstTime;
+    
+    int resizeFactor;
 }
 
 -(void) setup:(UIImageView *) incomingHsbImageView {
+    
+    resizeFactor = 4;
+    
     bitsPerComponent = 8;
     bytesPerPixel = 4;
     
@@ -57,6 +62,13 @@
     if(isFirstTime == true) {
         width = CGImageGetWidth(cgImageRef);
         height = CGImageGetHeight(cgImageRef);
+
+        NSLog(@"Original dimensions: %d, %d", width, height);
+        
+        width = width / resizeFactor;
+        height = height / resizeFactor;
+        
+        NSLog(@"Resized dimensions: %d, %d", width, height);
         
         arrayLength = height * width * 4;
         simpleLength = height * width;
@@ -64,13 +76,14 @@
         binaryRawData = (unsigned char*) calloc(simpleLength, sizeof(unsigned char));
         
         bytesPerRow = bytesPerPixel * width;
+        //bytesPerRow = CGImageGetBytesPerRow(cgImageRef);
         
         originalRawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
         
         isFirstTime = false;
     }
     
-    NSLog(@"CapturedImage width:%d height:%d", width, height);
+    //NSLog(@"CapturedImage width:%d height:%d", width, height);
     
     CGContextRef context = CGBitmapContextCreate(originalRawData, width, height,
                                                  bitsPerComponent, bytesPerRow, colorSpace,
@@ -101,30 +114,21 @@
     return color;
 }
 
+-(void) setColor1:(SColor *) color {
+    [jaProcessor setBandWithByte:color.getRed withByte:color.getGreen withByte:color.getBlue];
+}
+
 // This does the conversion to HSB and finding the blog
--(void) processImage:(SColor *) theColor {
+-(void) processImage {
     
     IOSByteArray *byteArray = [IOSByteArray arrayWithBytes:(char *)originalRawData count:arrayLength];
     
-    [jaProcessor processRawDataWithByteArray:byteArray withInt:width withInt:height
-                                    withByte:theColor.getRed withByte:theColor.getGreen withByte:theColor.getBlue];
-    
+    [jaProcessor processRawDataWithByteArray:byteArray withInt:width withInt:height];
+
     // Get the binary data, and convert into IOS world
     IOSByteArray *binaryDataArray = [jaProcessor getBinaryData];
     
     [binaryDataArray getBytes:(char *)binaryRawData length: simpleLength];
-    
-    int count0 = 0;
-    int count1 = 0;
-    
-    for(int i=0; i<simpleLength; i++) {
-        if(binaryRawData[i] == 0) {
-            count0++;
-        } else {
-            binaryRawData[i] = 255;
-            count1++;
-        }
-    }
     
     CGContextRef binaryCgContextRef = CGBitmapContextCreate(binaryRawData, width, height, bitsPerComponent, width, grayColorSpace, nil);
     CGImageRef binaryCgImage = CGBitmapContextCreateImage(binaryCgContextRef);

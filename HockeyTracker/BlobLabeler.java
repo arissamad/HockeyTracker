@@ -7,7 +7,7 @@ public class BlobLabeler {
 	protected int height;
 	protected int arrayLength;
 	
-	public static byte objectColor = 1;
+	public static byte objectColor = -1;
 	public static byte backgroundColor = 0;
 	protected byte noLabelValue = 0;
 	
@@ -255,28 +255,28 @@ public class BlobLabeler {
 		
 		while(it.hasNext()) {
 			Blob blob = it.next();
-			if(blob.getArea() < 30) it.remove();
+			if(blob.getArea() < 100) it.remove();
 		}
 	}
 	
 	public Blob findMostLikelyBlob() {
 		if(allBlobs.size() == 0) return null;
-		if(allBlobs.size() == 1) return allBlobs.get(0);
 		
 		SortedMap<Double, Blob> sortedMap = new TreeMap();
 		
 		for(Blob blob: allBlobs) {
 			double score = 0; // The smaller score wins.
 			double circularity = blob.getCircularity();
+            
+            if(circularity > 200) continue; // Just too not circular.
 			
 			// The bigger the circularity, the less circular, and the less likely it's our blob.
 			// 10 means really circular.
-			double circularityScore = circularity / 500;
-			if(circularityScore > 1) circularity = 1;
+			//double circularityScore = circularity / 500;
+			//if(circularityScore > 1) circularity = 1;
 			
-			score += circularityScore;
-			
-			System.out.println("Score is " + score);
+			//score += circularityScore;
+            score = 1/blob.getArea();
 			
 			sortedMap.put(score, blob);
 		}
@@ -284,7 +284,8 @@ public class BlobLabeler {
 		Blob winnerBlob = sortedMap.values().iterator().next();
 		
 		BPoint cg = winnerBlob.getCenterOfGravity();
-		System.out.println("Winner blob: " + cg.getX() + "," + cg.getY());
+        
+        mark(winnerBlob.getCenterOfGravity());
 		
 		return winnerBlob;
 	}
@@ -309,7 +310,7 @@ public class BlobLabeler {
 		max--;
 		
 		byte currColor = backgroundColor;
-		
+        
 		for(int i=-15; i<15; i++) {
 			
 			if(i%2 == 0) currColor = backgroundColor;
@@ -325,7 +326,8 @@ public class BlobLabeler {
 			if(y < 0) y = 0;
 			if(y > max) y = max;
 			binaryData[index(point.getX(), y)] = currColor;
+            
 		}
-		
+        
 	}
 }

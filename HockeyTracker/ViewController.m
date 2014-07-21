@@ -123,18 +123,33 @@
     
     NSLog(@"Clicked start");
     loop = YES;
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
     
-    [self runLoop];
+    [self autoCaptureImage];
 }
 
 - (IBAction)clickedStop {
     NSLog(@"Clicked stop");
     loop = NO;
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    
     [tonePlayer stop];
 }
 
 - (IBAction)clickedCapture {
-    NSLog(@"Clicked capture");
+    [self manualCaptureImage];
+}
+
+- (void) autoCaptureImage {
+    [self captureImage:NO];
+}
+
+- (void) manualCaptureImage {
+    [self captureImage:YES];
+}
+
+- (void) captureImage:(BOOL) isManual {
+    if(isManual == NO && loop == NO) return;
     
     AVCaptureConnection *videoConnection = nil;
     for (AVCaptureConnection *connection in stillImageOutput.connections) {
@@ -158,12 +173,9 @@
     
     [stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error)
     {
-        
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-        UIImage *image = [[UIImage alloc] initWithData:imageData];
         
-        NSUInteger iWidth = image.size.width;
-        NSUInteger iHeight = image.size.height;
+        UIImage *image = [[UIImage alloc] initWithData:imageData];
         
         self.snapshotView.image = image;
         
@@ -173,46 +185,52 @@
         
         if(touchColor != NULL) {
             // Show binary blob
-            [capturedImage processImage:touchColor];
+            
+            //NSDate *p1 = [NSDate date];
+            [capturedImage processImage];
+            //NSDate *p2 = [NSDate date];
+            
+            NSInteger playerLocation = [capturedImage getPlayerLocation];
+            
+            NSInteger frequency = (playerLocation * 3000 / 100) + 300;
+            
+            if(playerLocation == 0) frequency = 0;
+            
+            //NSLog(@"Frequency is %d", frequency);
+            
+            [tonePlayer play:frequency];
+            
+            //NSTimeInterval p2Time = [p2 timeIntervalSinceDate:p1];
+            
+            //NSLog(@"Performance: %f", p2Time);
+        }
+
+        if(loop == YES) {
+            [self performSelector:@selector(autoCaptureImage) withObject:self afterDelay:0.1];
         }
     }];
 }
 
 - (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture
 {
-    CGPoint touchPoint=[gesture locationInView:self.snapshotView];
+    CGPoint touchPoint = [gesture locationInView:self.snapshotView];
     
     NSInteger rawWidth = [capturedImage getWidth];
     NSInteger rawHeight = [capturedImage getHeight];
+    
+    NSLog(@"Raw dimensions: (%d, %d)", rawWidth, rawHeight);
     
     NSInteger rawX = rawWidth * (touchPoint.x/self.snapshotView.frame.size.width);
     NSInteger rawY = rawHeight * (touchPoint.y/self.snapshotView.frame.size.height);
     
     touchColor = [capturedImage getPixel:rawX y:rawY];
     
-    CGFloat red = [touchColor getRed];
-    CGFloat green = [touchColor getGreen];
-    CGFloat blue = [touchColor getBlue];
+    [colorPatch1 setColor:touchColor];
     
-    [colorPatch1 setColor:red green:green blue:blue];
+    [capturedImage setColor1:touchColor];
     
     // Now show binary
-    [capturedImage processImage:touchColor];
+    [capturedImage processImage];
 }
 
-- (void) runLoop {
-    NSLog(@"Loop");
-    
-    if(loop == YES) {
-        [self performSelector:@selector(runLoop) withObject:self afterDelay:1.0];
-        [self clickedCapture];
-        
-        NSInteger playerLocation = [capturedImage getPlayerLocation];
-        
-        NSInteger frequency = (playerLocation * 4000 / 100) + 500;
-        NSLog(@"Frequency is %d", frequency);
-        
-        [tonePlayer play:frequency];
-    }
-}
 @end

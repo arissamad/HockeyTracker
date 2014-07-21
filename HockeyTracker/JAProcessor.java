@@ -24,10 +24,8 @@ public class JAProcessor {
 		brightnessMax = 1;
 	}
 
-	public void processRawData(byte[] rawData, int width, int height, byte colorRed, byte colorGreen, byte colorBlue) {
+	public void processRawData(byte[] rawData, int width, int height) {
         
-		setBand(colorRed, colorGreen, colorBlue);
-		
 		int arrayLength = width * height;
 		binaryData = new byte[arrayLength];
 		
@@ -45,10 +43,10 @@ public class JAProcessor {
 				
 				if(inBand()) {
 					binaryData[simpleIndex] = BlobLabeler.objectColor;
-					inBandCount++;
+					//inBandCount++;
 				} else {
 					binaryData[simpleIndex] = BlobLabeler.backgroundColor;
-					outBandCount++;
+					//outBandCount++;
 				}
                 
 				compountIndex += 4;
@@ -56,22 +54,23 @@ public class JAProcessor {
 			}
 		}
 		
-		System.out.println("In-band/Out-band pixels: " + inBandCount + "/" + outBandCount);
-		System.out.println("Now detecting blobs...");
+		//System.out.println("In-band/Out-band pixels: " + inBandCount + "/" + outBandCount);
+		//System.out.println("Now detecting blobs...");
         
 		// Now, label the binary image
 		BlobLabeler blobLabeler = new BlobLabeler();
 		blobLabeler.processImage(binaryData, width, height);
         
-        System.out.println("Finished detecting blobs.");
+        //System.out.println("Finished detecting blobs.");
         
 		blobLabeler.filterBlobs();
-		blobLabeler.printDebuggingInfo();
+		//blobLabeler.printDebuggingInfo();
 		
 		Blob blob = blobLabeler.findMostLikelyBlob();
 		
 		if(blob == null) {
 			System.out.println("Candidate blob not found.");
+            playerLocation = 0; // Give a zero position, which means slowly move to middle.
 			return;
 		}
 		
@@ -88,6 +87,10 @@ public class JAProcessor {
 	public byte[] getBinaryData() {
 		return binaryData;
 	}
+    
+    public void stop() {
+        playerLocation = 50;
+    }
 	
 	protected void readHsb(byte[] rawData, int beginIndex) {
 		byte rb = rawData[beginIndex];

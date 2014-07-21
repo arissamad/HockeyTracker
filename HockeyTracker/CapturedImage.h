@@ -13,8 +13,11 @@
 
 -(void) setup:(UIImageView *) incomingHsbImageView;
 -(void) setImage:(CGImageRef) cgImageRef;
+
 -(SColor *) getPixel:(NSInteger) x y:(NSInteger)y;
--(void) processImage:(SColor *) theColor;
+-(void) setColor1:(SColor *) color;
+
+-(void) processImage;
 
 -(NSInteger) getWidth;
 -(NSInteger) getHeight;

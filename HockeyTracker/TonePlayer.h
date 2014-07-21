@@ -15,6 +15,7 @@
 @property double sampleRate;
 @property double frequency;
 @property double theta;
+@property double previousFrequency;
 
 - (void) setup;
 - (void) play:(NSInteger) freq;
