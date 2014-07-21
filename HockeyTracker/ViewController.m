@@ -78,6 +78,28 @@
     stillImageOutput = [AVCaptureStillImageOutput new];
     [captureSession addOutput:stillImageOutput];
     
+    captureOutput = [AVCaptureMovieFileOutput new];
+    [captureSession addOutput:captureOutput];
+    
+    // Movie file needs correct orientation
+    AVCaptureConnection *videoConnection = nil;
+    
+    for ( AVCaptureConnection *connection in [captureOutput connections] )
+    {
+        for ( AVCaptureInputPort *port in [connection inputPorts] )
+        {
+            if ( [[port mediaType] isEqual:AVMediaTypeVideo] )
+            {
+                videoConnection = connection;
+            }
+        }
+    }
+    
+    if([videoConnection isVideoOrientationSupported]) // **Here it is, its always false**
+    {
+        [videoConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
+    }
+    
     // Now make video file path
     NSURL *url = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
     
@@ -122,7 +144,9 @@
 - (IBAction)clickedStart {
     
     NSLog(@"Clicked start");
+    
     loop = YES;
+    [captureOutput startRecordingToOutputFileURL:[NSURL fileURLWithPath:videoFilePath] recordingDelegate:self];
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     
     [self autoCaptureImage];
@@ -130,7 +154,10 @@
 
 - (IBAction)clickedStop {
     NSLog(@"Clicked stop");
+    
     loop = NO;
+    [captureOutput stopRecording];
+    [self saveFile:videoFilePath];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     
     [tonePlayer stop];
@@ -231,6 +258,46 @@
     
     // Now show binary
     [capturedImage processImage];
+}
+
+- (void) saveFile:(NSString *) path
+{
+    BOOL isCompatible = UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(path);
+    NSLog(@"Is compatible %hhd", isCompatible);
+    UISaveVideoAtPathToSavedPhotosAlbum(path, self, @selector(onSave:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void) onSave:(NSString *) videoPath
+didFinishSavingWithError: (NSError *) error
+    contextInfo: (void *) contextInfo
+{
+    NSLog(@"onSave to %@", videoPath);
+    NSLog(@"Error: %@", error.domain);
+    
+    [self fs:videoPath];
+}
+
+- (void) fs:(NSString *) url
+{
+    NSError *attributesError = nil;
+    NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:url error:&attributesError];
+    
+    int fileSize = [fileAttributes fileSize];
+    NSLog(@"File size of %@ is %d", url, fileSize);
+}
+
+@end
+
+
+
+@implementation ViewController (AVCaptureFileOutputRecordingDelegate)
+
+- (void) captureOutput:(AVCaptureFileOutput *)captureOutput
+didStartRecordingToOutputFileAtURL:(NSURL *)fileURL
+       fromConnections:(NSArray *)connections
+{
+    NSLog(@"did start recording");
+    
 }
 
 @end
