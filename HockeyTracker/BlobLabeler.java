@@ -255,7 +255,7 @@ public class BlobLabeler {
 		
 		while(it.hasNext()) {
 			Blob blob = it.next();
-			if(blob.getArea() < 100) it.remove();
+			if(blob.getArea() < 50) it.remove();
 		}
 	}
 	

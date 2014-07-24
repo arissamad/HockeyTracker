@@ -107,14 +107,14 @@ public class JAProcessor {
 				(colorRed&0xFF) + "," + (colorGreen&0xFF) + "," + (colorBlue&0xFF) + 
 				") to HSB: (" + hue + ", " + saturation + ", " + brightness + ").");
 		
-		hueMin = hue - 0.1f;
-		hueMax = hue + 0.1f;
+		hueMin = hue - 0.05f;
+		hueMax = hue + 0.05f;
 		
 		saturationMin = saturation - 0.2f;
-		saturationMax = saturation + 0.2f;
+		saturationMax = 1.0f;
 		
 		brightnessMin = brightness - 0.3f;
-		brightnessMax = brightness + 0.3f;
+		brightnessMax = 1.0f;
 	}
 	
 	public void rgbtohsb(byte redByte, byte greenByte, byte blueByte) {

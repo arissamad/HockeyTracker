@@ -32,6 +32,8 @@
     
     TonePlayer *tonePlayer;
     
+    NSInteger frequency;
+    
     BOOL loop;
 }
 
@@ -149,6 +151,12 @@
     [captureOutput startRecordingToOutputFileURL:[NSURL fileURLWithPath:videoFilePath] recordingDelegate:self];
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     
+    NSError *error = nil;
+    if ([cameraDevice lockForConfiguration:&error]) {
+        [cameraDevice setExposureMode:AVCaptureExposureModeLocked];
+        [cameraDevice unlockForConfiguration];
+    }
+    
     [self autoCaptureImage];
 }
 
@@ -159,8 +167,17 @@
     [captureOutput stopRecording];
     [self saveFile:videoFilePath];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
+
+    NSError *error = nil;
+    if ([cameraDevice lockForConfiguration:&error]) {
+        [cameraDevice setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
+        [cameraDevice unlockForConfiguration];
+    }
     
     [tonePlayer stop];
+    
+    // Do another stop 1 second later, in case the other capture loop asynchronously fired.
+    [tonePlayer performSelector:@selector(stop) withObject:tonePlayer afterDelay:1.0];
 }
 
 - (IBAction)clickedCapture {
@@ -219,11 +236,20 @@
             
             NSInteger playerLocation = [capturedImage getPlayerLocation];
             
-            NSInteger frequency = (playerLocation * 3000 / 100) + 300;
-            
-            if(playerLocation == 0) frequency = 0;
-            
-            //NSLog(@"Frequency is %d", frequency);
+            if(playerLocation == 0) {
+                // Player disappeared. Slowly move frequency to the middle, don't abrubtly remove frequency.
+                NSInteger midFrequency = 1800;
+                if(frequency > midFrequency - 200 && frequency < midFrequency + 200) {
+                    frequency = midFrequency;
+                } else if(frequency <= midFrequency - 200) {
+                    frequency += 100;
+                } else if(frequency >= midFrequency + 200) {
+                    frequency -= 100;
+                }
+                NSLog(@"Frequency adjusting: %d", frequency);
+            } else {
+                frequency = (playerLocation * 3000 / 100) + 300;
+            }
             
             [tonePlayer play:frequency];
             
