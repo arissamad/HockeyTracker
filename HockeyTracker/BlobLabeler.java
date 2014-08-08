@@ -255,7 +255,7 @@ public class BlobLabeler {
 		
 		while(it.hasNext()) {
 			Blob blob = it.next();
-			if(blob.getArea() < 50) it.remove();
+			if(blob.getArea() < 20) it.remove();
 		}
 	}
 	
@@ -280,6 +280,8 @@ public class BlobLabeler {
 			
 			sortedMap.put(score, blob);
 		}
+        
+        if(sortedMap.size() == 0) return null;
 		
 		Blob winnerBlob = sortedMap.values().iterator().next();
 		

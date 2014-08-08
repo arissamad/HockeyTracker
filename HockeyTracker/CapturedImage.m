@@ -13,6 +13,7 @@
     JAProcessor *jaProcessor;
     
     unsigned char *originalRawData;
+    unsigned char *binaryRawData;
     
     NSInteger width;
     NSInteger height;
@@ -30,12 +31,9 @@
     CGContextRef cgContextRef;
     CGImageRef cgImageRef;
     
-    unsigned char *binaryRawData;
-    
     UIImageView *hsbImageView;
     
     BOOL isFirstTime;
-    
     int resizeFactor;
 }
 
@@ -90,7 +88,9 @@
                                                  kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     
     // Now draw into originalRawData
+    
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgImageRef);
+    CGContextRelease(context);
 }
 
 -(NSInteger) getWidth {
@@ -118,7 +118,7 @@
     [jaProcessor setBandWithByte:color.getRed withByte:color.getGreen withByte:color.getBlue];
 }
 
-// This does the conversion to HSB and finding the blog
+// This does the conversion to HSB and finding the blob
 -(void) processImage {
     
     IOSByteArray *byteArray = [IOSByteArray arrayWithBytes:(char *)originalRawData count:arrayLength];
@@ -133,14 +133,20 @@
     CGContextRef binaryCgContextRef = CGBitmapContextCreate(binaryRawData, width, height, bitsPerComponent, width, grayColorSpace, nil);
     CGImageRef binaryCgImage = CGBitmapContextCreateImage(binaryCgContextRef);
     
-    UIImage *hsbImage = [[UIImage alloc] initWithCGImage:binaryCgImage /*scale:1.0 orientation:UIImageOrientationRight*/];
+    UIImage *hsbImage = [[UIImage alloc] initWithCGImage:binaryCgImage];
     hsbImageView.image = hsbImage;
-    
+     
+     
     CGContextRelease(binaryCgContextRef);
+    CGImageRelease(binaryCgImage);
 }
 
 -(NSInteger) getPlayerLocation {
     return [jaProcessor getPlayerLocation];
+}
+
+
+-(void) releaseForLater {
 }
 
 @end

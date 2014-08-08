@@ -13,6 +13,7 @@
 
 #import "ColorPatch.h"
 #import "CapturedImage.h"
+#import "ZoomedImage.h"
 #import "SColor.h"
 #import "TonePlayer.h"
 
@@ -24,11 +25,13 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *color1View;
 @property (strong, nonatomic) IBOutlet UIImageView *color2View;
+@property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 
 
 - (IBAction)clickedStart;
 - (IBAction)clickedStop;
 - (IBAction)clickedCapture;
+- (IBAction)clickedLock;
 
 
 @end

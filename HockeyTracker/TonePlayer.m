@@ -19,7 +19,7 @@ OSStatus RenderTone(
 {
 	// Fixed amplitude is good enough for our purposes
     // At max headset volume, 1 = 1V. So it goes from -1V to 1V.
-	const double amplitude = 0.1;
+	const double amplitude = 0.5;
     
 	// Get the tone parameters out of the TonePlayer
 	TonePlayer *tonePlayer = (__bridge TonePlayer *)inRefCon;

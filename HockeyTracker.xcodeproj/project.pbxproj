@@ -36,6 +36,7 @@
 		0B270457197B9ED300237CBC /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270456197B9ED300237CBC /* CoreImage.framework */; };
 		0B270459197B9EDC00237CBC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270458197B9EDC00237CBC /* ImageIO.framework */; };
 		0B27045B197B9EE200237CBC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27045A197B9EE200237CBC /* QuartzCore.framework */; };
+		0B3ED81919948CE20030CB14 /* ZoomedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3ED81819948CE20030CB14 /* ZoomedImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -101,6 +102,8 @@
 		0B270456197B9ED300237CBC /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		0B270458197B9EDC00237CBC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		0B27045A197B9EE200237CBC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0B3ED81719948CE20030CB14 /* ZoomedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomedImage.h; sourceTree = "<group>"; };
+		0B3ED81819948CE20030CB14 /* ZoomedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomedImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +145,8 @@
 				0B02F946197BA05F00230B46 /* SColor.m */,
 				0B02F948197BA07B00230B46 /* CapturedImage.h */,
 				0B02F949197BA07B00230B46 /* CapturedImage.m */,
+				0B3ED81719948CE20030CB14 /* ZoomedImage.h */,
+				0B3ED81819948CE20030CB14 /* ZoomedImage.m */,
 				0B02F959197BB36400230B46 /* TonePlayer.h */,
 				0B02F95A197BB36400230B46 /* TonePlayer.m */,
 			);
@@ -340,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B02F94D197BA1BA00230B46 /* Blob.java in Sources */,
+				0B3ED81919948CE20030CB14 /* ZoomedImage.m in Sources */,
 				0B02F953197BA1EF00230B46 /* JAProcessor.java in Sources */,
 				0B02F955197BA1F600230B46 /* Polygon.java in Sources */,
 				0B270434197B9E9100237CBC /* ViewController.m in Sources */,

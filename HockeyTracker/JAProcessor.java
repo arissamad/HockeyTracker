@@ -25,7 +25,7 @@ public class JAProcessor {
 	}
 
 	public void processRawData(byte[] rawData, int width, int height) {
-        
+      try {
 		int arrayLength = width * height;
 		binaryData = new byte[arrayLength];
 		
@@ -78,6 +78,12 @@ public class JAProcessor {
 		float xLocation = 100.0f * (float)cg.getX()/(float)width;
         playerLocation = (int) xLocation;
 		System.out.println("Player x percentage: " + playerLocation);
+      } catch(Exception e) {
+          System.out.println("Got exception: " + e);
+          e.printStackTrace();
+
+          System.exit(1);
+      }
 	}
     
     public int getPlayerLocation() {

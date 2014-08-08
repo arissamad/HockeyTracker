@@ -20,11 +20,15 @@
     AVCaptureMovieFileOutput *captureOutput;
     AVCaptureStillImageOutput *stillImageOutput;
     
+    NSURL *folderUrl;
+    NSDateFormatter *dateFormatter;
     NSString *videoFilePath;
     
     CGColorSpaceRef rgbColorSpace;
     
     CapturedImage *capturedImage;
+    ZoomedImage *zoomedImage;
+    
     ColorPatch *colorPatch1;
     ColorPatch *colorPatch2;
     
@@ -35,12 +39,19 @@
     NSInteger frequency;
     
     BOOL loop;
+    
+    NSDate *previousLoop;
+    NSDate *preAsync;
+    
+    int currDirection;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    currDirection = 0;
     
     tonePlayer = [TonePlayer new];
     [tonePlayer setup];
@@ -52,6 +63,9 @@
     
     capturedImage = [CapturedImage new];
     [capturedImage setup:self.binaryView];
+    
+    zoomedImage = [ZoomedImage new];
+    [zoomedImage setup:self.snapshotView];
     
     [self.snapshotView setUserInteractionEnabled:YES];
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
@@ -103,20 +117,10 @@
     }
     
     // Now make video file path
-    NSURL *url = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
+    folderUrl = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"];
-    
-    NSString *dateStr = [dateFormatter stringFromDate:[NSDate date]];
-    NSString *nameStr = [NSString stringWithFormat:@"mymovie-%@.mov", dateStr];
-    
-    
-    url = [url URLByAppendingPathComponent:nameStr];
-    
-    NSLog(@"New video path is %@", [url path]);
-    
-    videoFilePath = url.path;
     
     // Prepare video preview
     AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:captureSession];
@@ -134,6 +138,25 @@
     // Start capture session
     [captureSession startRunning];
     
+    previousLoop = [NSDate date];
+    
+    
+    NSArray *codecs = [stillImageOutput availableImageDataCodecTypes];
+    
+    for(int i=0; i<codecs.count; i++) {
+        NSLog(@"Codecs: %@", codecs[i]);
+    }
+    
+    NSArray *formats = [stillImageOutput availableImageDataCVPixelFormatTypes];
+    for(int i=0; i<formats.count; i++) {
+        NSLog(@"Formats: %@", formats[i]);
+    }
+    
+    NSDictionary *outputSettings = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA], (id)kCVPixelBufferPixelFormatTypeKey, nil];
+    
+    //stillImageOutput.outputSettings = outputSettings;
+
+    
     NSLog(@"Initialized");
 }
 
@@ -144,18 +167,23 @@
 }
 
 - (IBAction)clickedStart {
-    
     NSLog(@"Clicked start");
+    
+    NSString *dateStr = [dateFormatter stringFromDate:[NSDate date]];
+    NSString *nameStr = [NSString stringWithFormat:@"mymovie-%@.mov", dateStr];
+    NSURL *finalUrl = [folderUrl URLByAppendingPathComponent:nameStr];
+    NSLog(@"New video path is %@", [finalUrl path]);
+
+    videoFilePath = finalUrl.path;
+
+    self.statusLabel.text = [NSString stringWithFormat:@"Path: %@", nameStr];
     
     loop = YES;
     [captureOutput startRecordingToOutputFileURL:[NSURL fileURLWithPath:videoFilePath] recordingDelegate:self];
+    
+    // Don't let iPhone go to sleep
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     
-    NSError *error = nil;
-    if ([cameraDevice lockForConfiguration:&error]) {
-        [cameraDevice setExposureMode:AVCaptureExposureModeLocked];
-        [cameraDevice unlockForConfiguration];
-    }
     
     [self autoCaptureImage];
 }
@@ -168,12 +196,6 @@
     [self saveFile:videoFilePath];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
 
-    NSError *error = nil;
-    if ([cameraDevice lockForConfiguration:&error]) {
-        [cameraDevice setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-        [cameraDevice unlockForConfiguration];
-    }
-    
     [tonePlayer stop];
     
     // Do another stop 1 second later, in case the other capture loop asynchronously fired.
@@ -182,6 +204,18 @@
 
 - (IBAction)clickedCapture {
     [self manualCaptureImage];
+}
+
+- (IBAction)clickedLock {
+    
+    NSError *error = nil;
+    if ([cameraDevice lockForConfiguration:&error]) {
+        [cameraDevice setExposureMode:AVCaptureExposureModeLocked];
+        [cameraDevice setWhiteBalanceMode:AVCaptureWhiteBalanceModeLocked];
+        [cameraDevice unlockForConfiguration];
+    }
+    
+    NSLog(@"White balance and exposure locked!.");
 }
 
 - (void) autoCaptureImage {
@@ -215,8 +249,20 @@
         if (videoConnection) { break; }
     }
     
+    preAsync = [NSDate date];
     [stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error)
     {
+        NSDate *loopStart = [NSDate date];
+        NSTimeInterval asyncTime = [loopStart timeIntervalSinceDate:previousLoop];
+        //NSLog(@"Async time: %f", asyncTime);
+        
+        NSTimeInterval pureAsyncTime = [loopStart timeIntervalSinceDate:preAsync];
+        //NSLog(@"Pure Async time: %f", pureAsyncTime);
+        
+        if(pureAsyncTime > 0.4) {
+            NSLog(@"----- SLOW -----");
+        }
+        
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
         
         UIImage *image = [[UIImage alloc] initWithData:imageData];
@@ -226,8 +272,9 @@
         CGImageRef cgImageRef = [image CGImage];
         
         [capturedImage setImage:cgImageRef];
+        [zoomedImage setImage:cgImageRef];
         
-        if(touchColor != NULL) {
+        if(touchColor != NULL && isManual == NO) {
             // Show binary blob
             
             //NSDate *p1 = [NSDate date];
@@ -248,7 +295,39 @@
                 }
                 NSLog(@"Frequency adjusting: %d", frequency);
             } else {
-                frequency = (playerLocation * 3000 / 100) + 300;
+                
+                if(playerLocation <= 45) {
+                    currDirection = -1;
+                } else if(playerLocation >= 55) {
+                    currDirection = 1;
+                } else {
+                    // btw 45 and 55
+                    if(currDirection == -1 && playerLocation < 50) {
+                        // Keep moving
+                        NSLog(@"Turning left, almost at the middle.");
+                    }
+                    else if(currDirection == -1 && playerLocation >= 50) {
+                        // Reached middle! Now give it some room to move between 45 and 55 without turning the camera
+                        currDirection = 0;
+                        NSLog(@"Done turning left! Hit middle.");
+                    }
+                    else if(currDirection == 1 && playerLocation > 50) {
+                        // Keep moving
+                        NSLog(@"Turning right, almost at the middle.");
+                    }
+                    else if(currDirection == 1 && playerLocation <=50) {
+                        // Reached middle! Now give it some room to move between 45 and 55 without turning the camera
+                        currDirection = 0;
+                        NSLog(@"Done turning right! Hit middle.");
+                    }
+                    else if(currDirection == 0) {
+                        // "Calm" it down. No need to move the camera at all.
+                        playerLocation = 50;
+                        NSLog(@"Staying calm, object within 45 and 55.");
+                    }
+                }
+                
+                frequency = (playerLocation * 3000 / 100) + 500; // Increase the offset if the device says "moving left" when the object is in the middle.
             }
             
             [tonePlayer play:frequency];
@@ -259,8 +338,12 @@
         }
 
         if(loop == YES) {
-            [self performSelector:@selector(autoCaptureImage) withObject:self afterDelay:0.1];
+            [self performSelector:@selector(autoCaptureImage) withObject:self afterDelay:0.01];
         }
+        
+        previousLoop = [NSDate date];
+        NSTimeInterval synchronousTime = [previousLoop timeIntervalSinceDate:loopStart];
+        //NSLog(@"Processing: %f", synchronousTime);
     }];
 }
 
@@ -268,15 +351,15 @@
 {
     CGPoint touchPoint = [gesture locationInView:self.snapshotView];
     
-    NSInteger rawWidth = [capturedImage getWidth];
-    NSInteger rawHeight = [capturedImage getHeight];
+    NSInteger rawWidth = [zoomedImage getWidth];
+    NSInteger rawHeight = [zoomedImage getHeight];
     
     NSLog(@"Raw dimensions: (%d, %d)", rawWidth, rawHeight);
     
     NSInteger rawX = rawWidth * (touchPoint.x/self.snapshotView.frame.size.width);
     NSInteger rawY = rawHeight * (touchPoint.y/self.snapshotView.frame.size.height);
     
-    touchColor = [capturedImage getPixel:rawX y:rawY];
+    touchColor = [zoomedImage getPixel:rawX y: rawY];
     
     [colorPatch1 setColor:touchColor];
     
@@ -284,10 +367,13 @@
     
     // Now show binary
     [capturedImage processImage];
+    
+    [zoomedImage mark:rawX y:rawY];
 }
 
 - (void) saveFile:(NSString *) path
 {
+    self.statusLabel.text = @"Saving...";
     BOOL isCompatible = UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(path);
     NSLog(@"Is compatible %hhd", isCompatible);
     UISaveVideoAtPathToSavedPhotosAlbum(path, self, @selector(onSave:didFinishSavingWithError:contextInfo:), nil);
@@ -299,6 +385,8 @@ didFinishSavingWithError: (NSError *) error
 {
     NSLog(@"onSave to %@", videoPath);
     NSLog(@"Error: %@", error.domain);
+    
+    self.statusLabel.text = [NSString stringWithFormat:@"Saved!"];
     
     [self fs:videoPath];
 }
