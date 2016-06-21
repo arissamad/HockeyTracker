@@ -71,6 +71,7 @@ public class JAProcessor {
 		if(blob == null) {
 			System.out.println("Candidate blob not found.");
             playerLocation = 0; // Give a zero position, which means slowly move to middle.
+            System.out.println("Test");
 			return;
 		}
 		

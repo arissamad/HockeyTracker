@@ -17,6 +17,7 @@
 		0B02F955197BA1F600230B46 /* Polygon.java in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F954197BA1F600230B46 /* Polygon.java */; };
 		0B02F958197BB34C00230B46 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B02F957197BB34C00230B46 /* AudioToolbox.framework */; };
 		0B02F95B197BB36400230B46 /* TonePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B02F95A197BB36400230B46 /* TonePlayer.m */; };
+		0B24177719CE43DA003E0B57 /* DataHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B24177619CE43DA003E0B57 /* DataHolder.m */; };
 		0B27041E197B9E9100237CBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27041D197B9E9100237CBC /* Foundation.framework */; };
 		0B270420197B9E9100237CBC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27041F197B9E9100237CBC /* CoreGraphics.framework */; };
 		0B270422197B9E9100237CBC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270421197B9E9100237CBC /* UIKit.framework */; };
@@ -37,6 +38,9 @@
 		0B270459197B9EDC00237CBC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B270458197B9EDC00237CBC /* ImageIO.framework */; };
 		0B27045B197B9EE200237CBC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B27045A197B9EE200237CBC /* QuartzCore.framework */; };
 		0B3ED81919948CE20030CB14 /* ZoomedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3ED81819948CE20030CB14 /* ZoomedImage.m */; };
+		0B80F2C619BD34AB0093661F /* ConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B80F2C519BD34AB0093661F /* ConfigTableViewController.m */; };
+		0B80F2C919BD35970093661F /* FileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B80F2C819BD35970093661F /* FileListViewController.m */; };
+		0B80F2CD19BD387F0093661F /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B80F2CC19BD387F0093661F /* FileCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -78,6 +82,8 @@
 		0B02F957197BB34C00230B46 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0B02F959197BB36400230B46 /* TonePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TonePlayer.h; sourceTree = "<group>"; };
 		0B02F95A197BB36400230B46 /* TonePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TonePlayer.m; sourceTree = "<group>"; };
+		0B24177519CE43DA003E0B57 /* DataHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHolder.h; sourceTree = "<group>"; };
+		0B24177619CE43DA003E0B57 /* DataHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHolder.m; sourceTree = "<group>"; };
 		0B27041A197B9E9100237CBC /* HockeyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HockeyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B27041D197B9E9100237CBC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0B27041F197B9E9100237CBC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -104,6 +110,12 @@
 		0B27045A197B9EE200237CBC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0B3ED81719948CE20030CB14 /* ZoomedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomedImage.h; sourceTree = "<group>"; };
 		0B3ED81819948CE20030CB14 /* ZoomedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomedImage.m; sourceTree = "<group>"; };
+		0B80F2C419BD34AB0093661F /* ConfigTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigTableViewController.h; sourceTree = "<group>"; };
+		0B80F2C519BD34AB0093661F /* ConfigTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigTableViewController.m; sourceTree = "<group>"; };
+		0B80F2C719BD35970093661F /* FileListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileListViewController.h; sourceTree = "<group>"; };
+		0B80F2C819BD35970093661F /* FileListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileListViewController.m; sourceTree = "<group>"; };
+		0B80F2CB19BD387F0093661F /* FileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileCell.h; sourceTree = "<group>"; };
+		0B80F2CC19BD387F0093661F /* FileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +216,8 @@
 		0B270423197B9E9100237CBC /* HockeyTracker */ = {
 			isa = PBXGroup;
 			children = (
+				0B80F2CE19BD3CCF0093661F /* Config View */,
+				0B80F2CA19BD38580093661F /* File View */,
 				0B02F94B197BA1A200230B46 /* java */,
 				0B02F941197BA01300230B46 /* Support */,
 				0B27042C197B9E9100237CBC /* AppDelegate.h */,
@@ -211,6 +225,8 @@
 				0B27042F197B9E9100237CBC /* Main.storyboard */,
 				0B270432197B9E9100237CBC /* ViewController.h */,
 				0B270433197B9E9100237CBC /* ViewController.m */,
+				0B24177519CE43DA003E0B57 /* DataHolder.h */,
+				0B24177619CE43DA003E0B57 /* DataHolder.m */,
 				0B270435197B9E9100237CBC /* Images.xcassets */,
 				0B270424197B9E9100237CBC /* Supporting Files */,
 			);
@@ -244,6 +260,26 @@
 				0B270445197B9E9100237CBC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0B80F2CA19BD38580093661F /* File View */ = {
+			isa = PBXGroup;
+			children = (
+				0B80F2C719BD35970093661F /* FileListViewController.h */,
+				0B80F2C819BD35970093661F /* FileListViewController.m */,
+				0B80F2CB19BD387F0093661F /* FileCell.h */,
+				0B80F2CC19BD387F0093661F /* FileCell.m */,
+			);
+			name = "File View";
+			sourceTree = "<group>";
+		};
+		0B80F2CE19BD3CCF0093661F /* Config View */ = {
+			isa = PBXGroup;
+			children = (
+				0B80F2C419BD34AB0093661F /* ConfigTableViewController.h */,
+				0B80F2C519BD34AB0093661F /* ConfigTableViewController.m */,
+			);
+			name = "Config View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,13 +382,17 @@
 			files = (
 				0B02F94D197BA1BA00230B46 /* Blob.java in Sources */,
 				0B3ED81919948CE20030CB14 /* ZoomedImage.m in Sources */,
+				0B80F2C919BD35970093661F /* FileListViewController.m in Sources */,
 				0B02F953197BA1EF00230B46 /* JAProcessor.java in Sources */,
 				0B02F955197BA1F600230B46 /* Polygon.java in Sources */,
+				0B80F2CD19BD387F0093661F /* FileCell.m in Sources */,
 				0B270434197B9E9100237CBC /* ViewController.m in Sources */,
 				0B02F94A197BA07B00230B46 /* CapturedImage.m in Sources */,
 				0B27042E197B9E9100237CBC /* AppDelegate.m in Sources */,
 				0B02F95B197BB36400230B46 /* TonePlayer.m in Sources */,
+				0B24177719CE43DA003E0B57 /* DataHolder.m in Sources */,
 				0B02F944197BA03600230B46 /* ColorPatch.m in Sources */,
+				0B80F2C619BD34AB0093661F /* ConfigTableViewController.m in Sources */,
 				0B02F951197BA1E900230B46 /* BPoint.java in Sources */,
 				0B27042A197B9E9100237CBC /* main.m in Sources */,
 				0B02F94F197BA1E400230B46 /* BlobLabeler.java in Sources */,

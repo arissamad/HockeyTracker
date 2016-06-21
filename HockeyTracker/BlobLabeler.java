@@ -260,36 +260,42 @@ public class BlobLabeler {
 	}
 	
 	public Blob findMostLikelyBlob() {
-		if(allBlobs.size() == 0) return null;
-		
-		SortedMap<Double, Blob> sortedMap = new TreeMap();
-		
-		for(Blob blob: allBlobs) {
-			double score = 0; // The smaller score wins.
-			double circularity = blob.getCircularity();
+        try {
+            if(allBlobs.size() == 0) return null;
             
-            if(circularity > 200) continue; // Just too not circular.
-			
-			// The bigger the circularity, the less circular, and the less likely it's our blob.
-			// 10 means really circular.
-			//double circularityScore = circularity / 500;
-			//if(circularityScore > 1) circularity = 1;
-			
-			//score += circularityScore;
-            score = 1/blob.getArea();
-			
-			sortedMap.put(score, blob);
-		}
-        
-        if(sortedMap.size() == 0) return null;
-		
-		Blob winnerBlob = sortedMap.values().iterator().next();
-		
-		BPoint cg = winnerBlob.getCenterOfGravity();
-        
-        mark(winnerBlob.getCenterOfGravity());
-		
-		return winnerBlob;
+            SortedMap<Double, Blob> sortedMap = new TreeMap();
+            
+            for(Blob blob: allBlobs) {
+                double score = 0; // The smaller score wins.
+                double circularity = blob.getCircularity();
+                
+                if(circularity > 200) continue; // Just too not circular.
+                
+                // The bigger the circularity, the less circular, and the less likely it's our blob.
+                // 10 means really circular.
+                //double circularityScore = circularity / 500;
+                //if(circularityScore > 1) circularity = 1;
+                
+                //score += circularityScore;
+                score = 1/blob.getArea();
+                
+                sortedMap.put(score, blob);
+            }
+            
+            if(sortedMap.size() == 0) return null;
+            
+            Blob winnerBlob = sortedMap.values().iterator().next();
+            
+            BPoint cg = winnerBlob.getCenterOfGravity();
+            
+            mark(winnerBlob.getCenterOfGravity());
+            
+            return winnerBlob;
+        } catch(Exception e) {
+            System.out.println("Error in findMostLikelyBlob");
+            e.printStackTrace();
+            return null;
+        }
 	}
 
 	public void printDebuggingInfo() {

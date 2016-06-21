@@ -39,7 +39,7 @@
 }
 
 -(void) setup:(UIImageView *) incomingImageView {
-    resizeFactor = 8;
+    resizeFactor = 4;
     
     bitsPerComponent = 8;
     bytesPerPixel = 4;
@@ -58,12 +58,12 @@
         width = CGImageGetWidth(cgImageRef);
         height = CGImageGetHeight(cgImageRef);
         
-        NSLog(@"Original dimensions: %d, %d", width, height);
+        NSLog(@"Zoomed Image: Original dimensions: %d, %d", width, height);
         
         zoomedWidth = width/resizeFactor;
         zoomedHeight = height/resizeFactor;
         
-        NSLog(@"Resized dimensions: %d, %d", width, height);
+        NSLog(@"Zoomed Image: Resized dimensions: %d, %d", zoomedWidth, zoomedHeight);
         
         arrayLength = height * width * 4;
         simpleLength = height * width;

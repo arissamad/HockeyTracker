@@ -125,6 +125,8 @@
     
     [jaProcessor processRawDataWithByteArray:byteArray withInt:width withInt:height];
 
+    NSLog(@"Test 2");
+    
     // Get the binary data, and convert into IOS world
     IOSByteArray *binaryDataArray = [jaProcessor getBinaryData];
     

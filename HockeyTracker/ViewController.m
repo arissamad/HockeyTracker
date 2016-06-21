@@ -44,6 +44,10 @@
     NSDate *preAsync;
     
     int currDirection;
+    
+    BOOL isLocked;
+    
+    DataHolder *dataHolder;
 }
 
 - (void)viewDidLoad
@@ -52,6 +56,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     currDirection = 0;
+    isLocked = NO;
+    dataHolder = [DataHolder new];
     
     tonePlayer = [TonePlayer new];
     [tonePlayer setup];
@@ -75,7 +81,7 @@
     
     
     captureSession = [AVCaptureSession new];
-    captureSession.sessionPreset = AVCaptureSessionPresetMedium;
+    captureSession.sessionPreset = AVCaptureSessionPresetHigh;
     
     cameraDevice = [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] firstObject];
     NSLog(@"Selected video device: %@", [cameraDevice localizedName]);
@@ -209,13 +215,26 @@
 - (IBAction)clickedLock {
     
     NSError *error = nil;
-    if ([cameraDevice lockForConfiguration:&error]) {
-        [cameraDevice setExposureMode:AVCaptureExposureModeLocked];
-        [cameraDevice setWhiteBalanceMode:AVCaptureWhiteBalanceModeLocked];
-        [cameraDevice unlockForConfiguration];
+    if(isLocked == NO) {
+        isLocked = YES;
+        [_lockLabel setTitle:@"Unlock" forState:UIControlStateNormal];
+        
+        if ([cameraDevice lockForConfiguration:&error]) {
+            [cameraDevice setExposureMode:AVCaptureExposureModeLocked];
+            [cameraDevice setWhiteBalanceMode:AVCaptureWhiteBalanceModeLocked];
+            [cameraDevice unlockForConfiguration];
+        }
+        NSLog(@"White balance and exposure locked!.");
+    } else {
+        isLocked = NO;
+        [_lockLabel setTitle:@"Lock" forState:UIControlStateNormal];
+        if ([cameraDevice lockForConfiguration:&error]) {
+            [cameraDevice setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
+            [cameraDevice setWhiteBalanceMode:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance];
+            [cameraDevice unlockForConfiguration];
+        }
+        NSLog(@"Unlocked.");
     }
-    
-    NSLog(@"White balance and exposure locked!.");
 }
 
 - (void) autoCaptureImage {
@@ -271,8 +290,12 @@
         
         CGImageRef cgImageRef = [image CGImage];
         
+        // This is needed for later processing
         [capturedImage setImage:cgImageRef];
-        [zoomedImage setImage:cgImageRef];
+        
+        if(isManual == YES) {
+            [zoomedImage setImage:cgImageRef];
+        }
         
         if(touchColor != NULL && isManual == NO) {
             // Show binary blob
@@ -400,6 +423,7 @@ didFinishSavingWithError: (NSError *) error
     NSLog(@"File size of %@ is %d", url, fileSize);
 }
 
+
 @end
 
 
@@ -412,6 +436,16 @@ didStartRecordingToOutputFileAtURL:(NSURL *)fileURL
 {
     NSLog(@"did start recording");
     
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"ViewController -> Config");
+    ConfigTableViewController *vc = [segue destinationViewController];
+    
+    [dataHolder setVideoFolderUrl:folderUrl];
+    
+    [vc setData:dataHolder];
 }
 
 @end
